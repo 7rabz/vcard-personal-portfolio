@@ -143,10 +143,10 @@ const pages = document.querySelectorAll("[data-page]");
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
+    
+    const targetPage = this.innerText.toLowerCase();
 
-    const targetPage = this.innerHTML.toLowerCase();
-
-    // Loop over all pages
+    // Loop over pages to toggle active class
     for (let j = 0; j < pages.length; j++) {
       if (pages[j].dataset.page === targetPage) {
         pages[j].classList.add("active");
@@ -155,12 +155,12 @@ for (let i = 0; i < navigationLinks.length; i++) {
       }
     }
 
-    // Loop over all nav links to update their active state
-    for (let j = 0; j < navigationLinks.length; j++) {
-      if (navigationLinks[j] === this) {
-        navigationLinks[j].classList.add("active");
+    // Loop over nav links to toggle active class
+    for (let k = 0; k < navigationLinks.length; k++) {
+      if (navigationLinks[k] === this) {
+        navigationLinks[k].classList.add("active");
       } else {
-        navigationLinks[j].classList.remove("active");
+        navigationLinks[k].classList.remove("active");
       }
     }
 
