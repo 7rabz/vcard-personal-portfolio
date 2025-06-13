@@ -58,7 +58,7 @@ overlay.addEventListener("click", testimonialsModalFunc);
 // custom select variables
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-select-value]");
+const selectValue = document.querySelector("[data-selecct-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
 select.addEventListener("click", function () { elementToggleFunc(this); });
@@ -143,27 +143,17 @@ const pages = document.querySelectorAll("[data-page]");
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
-    
-    const targetPage = this.innerText.toLowerCase();
 
-    // Loop over pages to toggle active class
-    for (let j = 0; j < pages.length; j++) {
-      if (pages[j].dataset.page === targetPage) {
-        pages[j].classList.add("active");
+    for (let i = 0; i < pages.length; i++) {
+      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
+        pages[i].classList.add("active");
+        navigationLinks[i].classList.add("active");
+        window.scrollTo(0, 0);
       } else {
-        pages[j].classList.remove("active");
+        pages[i].classList.remove("active");
+        navigationLinks[i].classList.remove("active");
       }
     }
 
-    // Loop over nav links to toggle active class
-    for (let k = 0; k < navigationLinks.length; k++) {
-      if (navigationLinks[k] === this) {
-        navigationLinks[k].classList.add("active");
-      } else {
-        navigationLinks[k].classList.remove("active");
-      }
-    }
-
-    window.scrollTo(0, 0);
   });
 }
