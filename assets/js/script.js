@@ -144,16 +144,26 @@ const pages = document.querySelectorAll("[data-page]");
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
 
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
+    const targetPage = this.innerHTML.toLowerCase();
+
+    // Loop over all pages
+    for (let j = 0; j < pages.length; j++) {
+      if (pages[j].dataset.page === targetPage) {
+        pages[j].classList.add("active");
       } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
+        pages[j].classList.remove("active");
       }
     }
 
+    // Loop over all nav links to update their active state
+    for (let j = 0; j < navigationLinks.length; j++) {
+      if (navigationLinks[j] === this) {
+        navigationLinks[j].classList.add("active");
+      } else {
+        navigationLinks[j].classList.remove("active");
+      }
+    }
+
+    window.scrollTo(0, 0);
   });
 }
